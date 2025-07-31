@@ -1,0 +1,171 @@
+---
+title: "Libraries"
+author: "Ryan DePalma"
+format: html
+editor: visual
+---
+
+## Installing Necessary Libraries for the PDF TLF App
+
+For the App, 8 libraries are used. This tutorial goes through installing all them and ensure you have everything you'd need. The tabulapdf installation is more complex due to it being on git hub, and firewalls blocking accessing that URL for some work laptops. If any questions arise you can email **Ryan.DePalma\@sunpharma.com** or **ryandepalma111\@gmail.com**
+
+#### Available on CRAN
+
+1.  SHINY —– Core framework for building interactive web applications in R
+
+    [Welcome to Shiny](https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/) [Shiny Documentation](https://www.rdocumentation.org/packages/shiny/versions/1.11.1)
+
+```{r}
+library(shiny)               # checking if installed
+```
+
+```{r}
+install.packages("shiny")    # installation
+```
+
+2.  DT —– Provides an R interface to the DataTables JavaScript Library
+
+    [DT Documentation](https://rstudio.github.io/DT/)
+
+```{r}
+library(DT)                  # checking if installed
+```
+
+```{r}
+install.packages("DT")       # installation
+```
+
+3.  STRINGR —— Simplifies string manipulation using consistent functions
+
+    [stringr Documentation](https://stringr.tidyverse.org/)
+
+```{r}
+library(stringr)             # checking if installed
+```
+
+```{r}
+install.packages("stringr")  # installation
+```
+
+4.  DPLYR —– A tool for data manipulation, part of the tidyverse
+
+    [dplyr Documentation](https://www.rdocumentation.org/packages/dplyr/versions/1.0.10)
+
+```{r}
+library(dplyr)               # checking if installed
+```
+
+```{r}
+install.packages("dplyr")    # installation
+```
+
+5.  BSLIB —– Provides Bootstrap and Bootswatch themes and customization of User Interface
+
+    [bslib Documentation](https://www.rdocumentation.org/packages/bslib/versions/0.8.0) [Bootswatch Themes](https://bootswatch.com/default/)
+
+```{r}
+library(bslib)               # checking if installed
+```
+
+```{r}
+install.packages("bslib")    # installation
+```
+
+6.  PDFTOOLS —- obtaining information about PDF
+
+    [Documentation](https://www.rdocumentation.org/packages/pdftools/versions/3.5.0/topics/pdftools)
+
+```{r}
+library(pdftools)      # check if installed
+```
+
+```{r}
+install.packages("pdftools") # installation 
+```
+
+7.  SHINYCSSLOADERS —- For loading screen in Shiny app UI
+
+    [Documentation](https://www.rdocumentation.org/packages/shinycssloaders/versions/1.1.0)
+
+```{r}
+library(shinycssloaders)  # check if installed
+```
+
+```{r}
+install.packages("shinycssloaders")   # install
+```
+
+#### Available on GitHub
+
+```{r}
+install.packages("remotes")
+```
+
+\*\* Tabulizer Jars and Tabulapdf \*\*
+
+```{r}
+# Easy Install -- Didn't work on my work Laptop due to firewall Restrictions
+#        but worth a try     library remotes necessary
+library(remotes)
+remotes::install_github("ropensci/tabulizerjars")
+remotes::install_github("ropensci/tabulapdf")
+```
+
+#### Manual Installation
+
+Steps for both packages, TabulizerJars and TabulaPDF
+
+1.  Go to <https://github.com/ropensci/tabulizerjars> and <https://github.com/ropensci/tabulapdf> .
+
+2.  Click the green **"Code"** button and select **"Download Zip"** for both packages.
+
+3.  Extract both zips to a known location on your computer.
+
+4.  Check Java is installed and version.
+
+    ```{r}
+    system("java -version")
+    ```
+
+5.  Find the Java install path, e.g. "C:\\Program Files\\Java\\jre1.8.0_301" (this was my path)
+
+    To find the path you can open Command Prompt and run `where java`.
+
+    Note: jre works for me, but if not switch to jdk (might need installation).
+
+6.  Set JAVA_HOME.
+
+    ```{r}
+    Sys.setenv(JAVA_HOME = "C:\Program Files\Java\jre1.8.0_301") # adjust path
+    ```
+
+7.  Load rJava.
+
+    ```{r}
+    library(rJava)
+    install.packages("rJava")    # if needed
+    ```
+
+8.  Install tabulizerjars and tabulapdf.
+
+    ```{r}
+    remotes::install_local("C:/.../tabulizerjars")    # adjust path
+    remotes::install_local("C:/.../tabulapdf")        # adjust path
+    ```
+
+9.  Check package.
+
+    ```{r}
+    library(tabulapdf)
+
+    # test with a sample pdf 
+    extract_tables("path/to/your/file.pdf")
+    ```
+
+Note: The steps with JAVA were necessary for my own manual installation, but you could try skipping them.
+
+Need for rsconnect for publishing ?
+
+```{r}
+library(rsconnect)
+```
